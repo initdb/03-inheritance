@@ -13,7 +13,7 @@ import static de.thro.inf.prg3.a03.Animal.State.*;
  */
 public class Animal {
 
-	private static final Logger logger = LogManager.getLogger();
+	private final static Logger logger = LogManager.getLogger();
 
 	public enum State {SLEEPING, HUNGRY, DIGESTING, PLAYFUL, DEAD}
 
@@ -48,6 +48,7 @@ public class Animal {
 		Arrays.sort(this.devours);
 	}
 
+	/*
 	public void tick(){
 		logger.info("tick()");
 		time++;
@@ -89,7 +90,9 @@ public class Animal {
 		logger.info(state.name());
 
 	}
+	*/
 
+	/*
 	public void feed(){
 		if (!state.equals(State.HUNGRY))
 			throw new IllegalStateException("Can't stuff a cat...");
@@ -102,7 +105,7 @@ public class Animal {
 
 	public boolean devours(Animal other){
 		return Arrays.binarySearch(this.devours, other.genusSpecies) >= 0;
-	}
+	}*/
 
 	public String getName() {
 		return name;
