@@ -4,6 +4,6 @@ public class PlayfulState extends State
 {
     @Override
     State successor() {
-        return null;
+        return new SleepingState();
     }
 }

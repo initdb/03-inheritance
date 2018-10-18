@@ -5,6 +5,7 @@ public class DigestingState extends State
 {
     @Override
     State successor() {
-        return null;
+        logger.info("Getting in a playful mood!");
+        return new PlayfulState();
     }
 }

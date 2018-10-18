@@ -8,13 +8,21 @@ public abstract class State
     protected final Logger logger = LogManager.getLogger();
     protected Animal animal;
 
-    private int t;
-    private int duration;
+    private int time = 0;
+    private int duration = 0;
 
     State tick()
     {
-        return null;
+        return this.successor();
     }
 
     abstract State successor();
+
+    public int getTime() {
+        return time;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
 }
