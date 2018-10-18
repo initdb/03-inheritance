@@ -107,6 +107,18 @@ public class Animal {
 		return Arrays.binarySearch(this.devours, other.genusSpecies) >= 0;
 	}*/
 
+	public int getSleep() {
+		return sleep;
+	}
+
+	public int getDigest() {
+		return digest;
+	}
+
+	public int getAwake() {
+		return awake;
+	}
+
 	public String getName() {
 		return name;
 	}

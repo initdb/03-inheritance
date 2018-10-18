@@ -6,11 +6,15 @@ public class HungryState extends State
     private static int timeSinceFeed = 0;
     private static final int DEATH_THRESHOLD = 5;
 
+    public HungryState(Animal animal) {
+        super(animal);
+    }
+
     @Override
     State successor()
     {
         if(timeSinceFeed >= DEATH_THRESHOLD) {
-            return new DeathState();
+            return new DeathState(this.animal);
         }
         else
         {
@@ -21,6 +25,6 @@ public class HungryState extends State
 
     State feed()
     {
-        return new DigestingState();
+        return new DigestingState(this.animal);
     }
 }

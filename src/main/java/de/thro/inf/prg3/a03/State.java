@@ -5,11 +5,16 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class State
 {
-    protected final Logger logger = LogManager.getLogger();
-    protected Animal animal;
+    protected static final Logger logger = LogManager.getLogger();
+    protected static Animal animal;
 
     private int time = 0;
     private int duration = 0;
+
+    public State(Animal animal)
+    {
+        this.animal = animal;
+    }
 
     State tick()
     {
