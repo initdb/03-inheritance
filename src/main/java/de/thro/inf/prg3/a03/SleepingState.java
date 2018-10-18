@@ -3,8 +3,14 @@ import de.thro.inf.prg3.a03.*;
 
 public class SleepingState extends State
 {
+    protected SleepingState(int duration) {
+        super(duration);
+    }
+
     @Override
-    State successor(Cat cat) {
-        return new HungryState();
+    State successor(Cat cat)
+    {
+        logger.info("Yawn... getting hungry!");
+        return new HungryState(cat.getAwake());
     }
 }

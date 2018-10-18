@@ -3,14 +3,19 @@ import de.thro.inf.prg3.a03.*;
 
 public class HungryState extends State
 {
+    protected HungryState(int duration) {
+        super(duration);
+    }
+
     @Override
     State successor(Cat cat)
     {
-        return new DeathState();
+        return new DeathState(0);
     }
 
-    State feed()
+    State feed(Cat cat)
     {
-        return new DigestingState();
+        logger.info("You feed the cat...");
+        return new DigestingState(cat.getDigest());
     }
 }

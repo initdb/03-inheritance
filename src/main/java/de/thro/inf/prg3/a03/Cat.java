@@ -3,16 +3,14 @@ package de.thro.inf.prg3.a03;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static de.thro.inf.prg3.a03.Cat.State.*;
-
 public class Cat {
 	private static final Logger logger = LogManager.getLogger();
 
 	// valid states
-	public enum State {SLEEPING, HUNGRY, DIGESTING, PLAYFUL, DEAD}
+	/*public enum State {SLEEPING, HUNGRY, DIGESTING, PLAYFUL, DEAD}*/
 
 	// initially, animals are sleeping
-	private State state = State.SLEEPING;
+	private State state = new SleepingState(getSleep());
 
 	// state durations (set via constructor), ie. the number of ticks in each state
 	private final int sleep;
@@ -22,7 +20,7 @@ public class Cat {
 	private final String name;
 
 	private int time = 0;
-	private int timeDigesting = 0;
+	//private int timeDigesting = 0;
 
 	public Cat(String name, int sleep, int awake, int digest) {
 		this.name = name;
@@ -76,7 +74,7 @@ public class Cat {
 	}
 	*/
 
-	public void feed(){
+	/*public void feed(){
 		if (!isHungry())
 			throw new IllegalStateException("Can't stuff a cat...");
 
@@ -85,7 +83,7 @@ public class Cat {
 		// change state and reset the timer
 		state = State.DIGESTING;
 		timeDigesting = 0;
-	}
+	}*/
 
 	public boolean isAsleep() {
 		return state.equals(State.SLEEPING);
@@ -112,4 +110,19 @@ public class Cat {
 		return name;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public int getAwake() {
+		return awake;
+	}
+
+	public int getDigest() {
+		return digest;
+	}
+
+	public int getSleep() {
+		return sleep;
+	}
 }

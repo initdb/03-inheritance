@@ -10,18 +10,27 @@ public abstract class State
     private int time = 0;
     private int duration = 0;
 
-    State tick(Cat cat)
+    protected State(int duration)
     {
-        return successor(cat);
+        this.duration = duration;
+    }
+
+    final State tick(Cat cat)
+    {
+        if(duration < 0)
+        {
+            return this;
+        }
+        else if(++time == duration)
+        {
+            return successor(cat);
+        }
+        else
+        {
+            logger.info(getClass().getName());
+            return this;
+        }
     }
 
     abstract State successor(Cat cat);
-
-    public int getTime() {
-        return time;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
 }
