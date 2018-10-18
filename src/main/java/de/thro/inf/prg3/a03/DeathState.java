@@ -8,6 +8,7 @@ public class DeathState extends State
 
     @Override
     State successor(Cat cat) {
+        logger.info("The cat has already starved - you monster!");
         return this;
     }
 }
