@@ -6,22 +6,16 @@ import org.apache.logging.log4j.Logger;
 public abstract class State
 {
     protected static final Logger logger = LogManager.getLogger();
-    protected static Animal animal;
 
     private int time = 0;
     private int duration = 0;
 
-    public State(Animal animal)
+    State tick(Cat cat)
     {
-        this.animal = animal;
+        return successor(cat);
     }
 
-    State tick()
-    {
-        return this.successor();
-    }
-
-    abstract State successor();
+    abstract State successor(Cat cat);
 
     public int getTime() {
         return time;
