@@ -3,14 +3,12 @@ package de.thro.inf.prg3.a03;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Cat {
+public class Cat
+{
 	private static final Logger logger = LogManager.getLogger();
 
-	// valid states
-	/*public enum State {SLEEPING, HUNGRY, DIGESTING, PLAYFUL, DEAD}*/
-
 	// initially, animals are sleeping
-	public State currentState = new SleepingState(getSleep());
+	private State currentState;
 
 	// currentState durations (set via constructor), ie. the number of ticks in each currentState
 	private final int sleep;
@@ -27,79 +25,53 @@ public class Cat {
 		this.sleep = sleep;
 		this.awake = awake;
 		this.digest = digest;
+		currentState = new SleepingState(getSleep());
 	}
 
-	/*
-	public void tick(){
-		logger.info("tick()");
-		time = time + 1;
-
-		switch (currentState) {
-			case SLEEPING:
-				if (time == sleep) {
-					logger.info("Yoan... getting hungry!");
-					currentState = HUNGRY;
-					time = 0;
-				}
-				break;
-			case HUNGRY:
-				if(time == awake){
-					logger.info("I've starved for a too long time...good bye...");
-					currentState = DEAD;
-				}
-				break;
-			case DIGESTING:
-				timeDigesting = timeDigesting + 1;
-				if (timeDigesting == digest) {
-					logger.info("Getting in a playful mood!");
-					currentState = PLAYFUL;
-				}
-				break;
-			case PLAYFUL:
-				if (time >= awake) {
-					logger.info("Yoan... getting tired!");
-					currentState = SLEEPING;
-					time = 0;
-				}
-				break;
-
-			case DEAD:
-				break;
-			default:
-				throw new IllegalStateException("Unknown cat currentState " + currentState.name());
-		}
-
-		logger.info(currentState.name());
-
-	}
-	*/
-
-	public void feed(){
-		if (currentState.getClass().getName()!=HungryState.class.getName())
-			throw new IllegalStateException("Can't stuff a cat...");
-
-		logger.info("You feed the cat...");
+	public void tick()
+	{
+		currentState = currentState.tick(this);
 	}
 
-	/*public boolean isAsleep() {
-		return currentState.equals(State.SLEEPING);
+	public void feed()
+	{
+		currentState = currentState.feed(this);
+	}
+
+	public boolean isAsleep() {
+		if(currentState.getClass().getName() == SleepingState.class.getName())
+			return true;
+		else
+			return false;
 	}
 
 	public boolean isPlayful() {
-		return currentState.equals(State.PLAYFUL);
+		if(currentState.getClass().getName() == PlayfulState.class.getName())
+			return true;
+		else
+			return false;
 	}
 
 	public boolean isHungry() {
-		return currentState.equals(State.HUNGRY);
+		if(currentState.getClass().getName() == HungryState.class.getName())
+			return true;
+		else
+			return false;
 	}
 
 	public boolean isDigesting() {
-		return currentState.equals(State.DIGESTING);
+		if(currentState.getClass().getName() == DigestingState.class.getName())
+			return true;
+		else
+			return false;
 	}
 
 	public boolean isDead() {
-		return currentState == State.DEAD;
-	}*/
+		if(currentState.getClass().getName() == DeathState.class.getName())
+			return true;
+		else
+			return false;
+	}
 
 	@Override
 	public String toString() {

@@ -3,7 +3,6 @@ import de.thro.inf.prg3.a03.*;
 
 public class DigestingState extends State
 {
-    private int timeDigesting = 0;
 
     public DigestingState(int duration) {
         super(duration);
@@ -12,16 +11,7 @@ public class DigestingState extends State
     @Override
     State successor(Cat cat)
     {
-        if(timeDigesting == cat.getDigest())
-        {
-            logger.info("Getting in a playful mood!");
-            return new PlayfulState(cat.getAwake());
-        }
-        else
-        {
-            logger.info("Digesting in progress...");
-            timeDigesting++;
-            return this;
-        }
+        logger.info("Getting in a playful mood!");
+        return new PlayfulState(cat.getAwake());
     }
 }

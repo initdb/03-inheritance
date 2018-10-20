@@ -13,6 +13,7 @@ public class HungryState extends State
         return new DeathState(0);
     }
 
+    @Override
     State feed(Cat cat)
     {
         logger.info("You feed the cat...");

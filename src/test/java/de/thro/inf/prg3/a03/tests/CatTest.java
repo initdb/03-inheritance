@@ -14,7 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Peter Kurfer
  * Created on 10/7/17.
  */
-public class CatTest {
+public class CatTest
+{
 
 	private static final int Sleep = 10;
 	private static final int Awake = 15;
@@ -23,34 +24,47 @@ public class CatTest {
 	private Cat cat;
 
 	@BeforeEach
-	void setUp() {
+	void setUp()
+    {
 		cat = new Cat("Blue", Sleep, Awake, Digest);
 	}
 
 	@Test
-	void testFeedHungryAnimal() {
-		IntStream.range(0, Sleep).forEach(i -> cat.currentState.tick(cat));
-		assertEquals(cat.currentState.getClass().getName(), SleepingState.class.getName());
-		cat.currentState.tick(cat);
+	void testFeedHungryAnimal()
+    {
+		for(int i = 0; i < cat.getSleep()-1; i++)
+        {
+            cat.tick();
+        }
+		assertTrue(cat.isAsleep());
+		cat.tick();
 		cat.feed();
-		//assertTrue(cat.isDigesting());
-        assertEquals(cat.currentState.getClass().getName(), DigestingState.class.getName());
+		assertTrue(cat.isDigesting());
 	}
 
 	@Test
-	void testFeedNotHungryAnimal(){
-		//assertFalse(cat.isHungry());
-		//assertThrows(IllegalStateException.class, () -> cat.feed());
+	void testFeedNotHungryAnimal()
+    {
+		assertFalse(cat.isHungry());
+        cat.feed();
+        assertFalse(cat.isHungry());
 	}
 
 	@Test
 	void testAnimalGettingPlayful() {
 		//Waiting while cat is sleeping
-		//IntStream.range(0, Sleep).forEach(i -> cat.tick());
-		//cat.feed();
+        for(int i = 0; i < cat.getSleep(); i++)
+        {
+            cat.tick();
+        }
+        assertTrue(cat.isHungry());
+		cat.feed();
 		//Waiting while cat is digesting
-		//IntStream.range(0, Digest).forEach(i -> cat.tick());
-		//assertTrue(cat.isPlayful());
+        for(int i = 0; i < cat.getDigest(); i++)
+        {
+            cat.tick();
+        }
+        assertTrue(cat.isPlayful());
 	}
 
 	@Test

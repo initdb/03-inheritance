@@ -17,6 +17,7 @@ public abstract class State
 
     public final State tick(Cat cat)
     {
+        logger.info("tick()");
         if(duration < 0)
         {
             return this;
@@ -33,4 +34,10 @@ public abstract class State
     }
 
     abstract State successor(Cat cat);
+
+    State feed(Cat cat)
+    {
+        logger.info("Can't stuff a cat...");
+        return this;
+    }
 }
