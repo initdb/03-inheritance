@@ -17,7 +17,7 @@ public abstract class State
 
     public final State tick(Cat cat)
     {
-        logger.info("tick()");
+        logger.info("tick()" + time);
         if(duration < 0)
         {
             return this;
@@ -39,5 +39,13 @@ public abstract class State
     {
         logger.info("Can't stuff a cat...");
         return this;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public int getTime() {
+        return time;
     }
 }

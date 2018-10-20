@@ -17,6 +17,6 @@ public class HungryState extends State
     State feed(Cat cat)
     {
         logger.info("You feed the cat...");
-        return new DigestingState(cat.getDigest());
+        return new DigestingState(cat.getDigest(), getDuration() - getTime());
     }
 }
