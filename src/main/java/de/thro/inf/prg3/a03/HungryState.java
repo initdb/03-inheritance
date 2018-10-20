@@ -3,7 +3,7 @@ import de.thro.inf.prg3.a03.*;
 
 public class HungryState extends State
 {
-    protected HungryState(int duration) {
+    public HungryState(int duration) {
         super(duration);
     }
 

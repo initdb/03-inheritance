@@ -5,7 +5,7 @@ public class DigestingState extends State
 {
     private int timeDigesting = 0;
 
-    protected DigestingState(int duration) {
+    public DigestingState(int duration) {
         super(duration);
     }
 

@@ -3,7 +3,7 @@ import de.thro.inf.prg3.a03.*;
 
 public class SleepingState extends State
 {
-    protected SleepingState(int duration) {
+    public SleepingState(int duration) {
         super(duration);
     }
 

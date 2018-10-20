@@ -10,12 +10,12 @@ public abstract class State
     private int time = 0;
     private int duration = 0;
 
-    protected State(int duration)
+    public State(int duration)
     {
         this.duration = duration;
     }
 
-    final State tick(Cat cat)
+    public final State tick(Cat cat)
     {
         if(duration < 0)
         {

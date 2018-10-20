@@ -2,7 +2,7 @@ package de.thro.inf.prg3.a03;
 
 public class PlayfulState extends State
 {
-    protected PlayfulState(int duration) {
+    public PlayfulState(int duration) {
         super(duration);
     }
 
